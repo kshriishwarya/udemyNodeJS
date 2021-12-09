@@ -74,9 +74,11 @@ app.get('/weatherwithoutpromise',(req,res) => {
 });
 app.get('/getData',(req,response)=>{
     var data
-    request('https://jsonplaceholder.typicode.com/todos/1',(err,res,body)=>{
+    request('http://5c055de56b84ee00137d25a0.mockapi.io/api/v1/employees',(err,res,body)=>{
         console.log(body)
-        data=body
+        data=JSON.parse(body).map((item)=>{
+  return {name:item.name,createdAt:item.createdAt,Id:item.id}
+        })
         response.send(data)
 
     })
